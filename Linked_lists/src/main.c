@@ -82,7 +82,6 @@ int main()
   printf("inside main : head addr =  %p \n", head);
   struct Node *curr;
   addElements(5, head);
-  int (*fun_ptr_print)(int);
 
   // printf("inside main : %p\n", head);
   // printf("outside func head->next %p\n", head->next);
