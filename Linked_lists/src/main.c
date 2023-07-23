@@ -7,49 +7,91 @@ struct Node
   struct Node *next;
 };
 
-struct Node *addElements(int number, struct Node *head)
+void addElements(int number, struct Node *head)
 {
   struct Node *current;
-
-  if (number <= 0)
-  {
-    return head;
-  }
+  // if (number <= 0)
+  // {
+  //   return head;
+  // }
 
   if (head == NULL)
   {
-    head = malloc(sizeof(struct Node));
-    printf("inside func head %p\n", head);
+    // head = malloc(sizeof(struct Node));
+    printf("inside func: head addr =  %p\n", head);
+    scanf("%d", &head->x);
   }
 
   current = head;
+  scanf("%d", &head->x);
   for (int i = 0; i < number - 1; i++)
   {
     current->next = malloc(sizeof(struct Node));
-    printf("inside func current %p\n", current->next);
-
+    printf("inside func:current addr =  %p\n", current->next);
+    scanf("%d", &current->next->x);
     current = current->next;
   }
 
   current->next = NULL;
 
-  printf("inside func head %p\n", head);
+  printf("inside func: head  addr = %p\n", head);
 
-  return head;
+  // return head;
+}
+
+struct Node *reverse_list(struct Node *head)
+{
+  struct Node *now, *pre;
+  pre = head;
+  now = pre->next;
+
+  if (now->next == NULL)
+  {
+    pre->next  = NULL;
+    head       = now;
+    head->next = pre;
+    return head;
+  }
+  else
+  {
+    struct Node *next_temp;
+    next_temp = now->next;
+    // head->next = NULL;
+    pre->next = NULL;
+    while (next_temp->next != NULL)
+    {
+      now->next = pre;
+      pre       = now;
+      now       = next_temp;
+      next_temp = next_temp->next;
+    }
+    if (next_temp->next == NULL)
+    {
+      next_temp->next = now;
+      now->next       = pre;
+      head            = next_temp;
+      printf("return addr head %p\n", head);
+      return head;
+    }
+  }
 }
 
 int main()
 {
   struct Node *head = malloc(sizeof(struct Node));
+  printf("inside main : head addr =  %p \n", head);
   struct Node *curr;
+  addElements(5, head);
+  int (*fun_ptr_print)(int);
 
-  head = addElements(10, head);
-
-  printf("outside func head %p\n", head);
-  printf("outside func head->next %p\n", head->next);
-
-  for (curr = head; curr != NULL; curr = curr->next)
+  // printf("inside main : %p\n", head);
+  // printf("outside func head->next %p\n", head->next);
+  curr = reverse_list(head);
+  while (curr != NULL)
   {
-    printf("%p has %d\n", curr);
+    printf("%p has %d\n", curr, curr->x);
+    curr = curr->next;
   }
+
+  return 0;
 }
