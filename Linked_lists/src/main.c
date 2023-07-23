@@ -40,7 +40,7 @@ struct Node *addElements(int number, struct Node *head)
 
 int main()
 {
-  struct Node *head = NULL;
+  struct Node *head = malloc(sizeof(struct Node));
   struct Node *curr;
 
   head = addElements(10, head);
