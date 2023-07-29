@@ -76,6 +76,25 @@ struct Node *reverse_list(struct Node *head)
   }
 }
 
+void delete_list(int del_val, struct Node *head)
+{
+  struct Node *current;
+  struct Node *prev;
+  struct Node *next;
+
+  current = head;
+  // if (current->x = del_val) {}
+  do
+  {
+    if (current->next->x = del_val)
+    {
+      struct Node *temp = current->next->next;
+      free(current->next);
+      current->next = temp;
+    }
+  } while (current->next != NULL);
+}
+
 int main()
 {
   struct Node *head = malloc(sizeof(struct Node));
@@ -86,6 +105,8 @@ int main()
   // printf("inside main : %p\n", head);
   // printf("outside func head->next %p\n", head->next);
   curr = reverse_list(head);
+  head = curr;
+  delete_list(4, head);
   while (curr != NULL)
   {
     printf("%p has %d\n", curr, curr->x);
