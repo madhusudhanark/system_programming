@@ -7,6 +7,13 @@ struct Node
   struct Node *next;
 };
 
+struct Node1
+{
+  int           x;
+  struct Node1 *next;
+  struct Node1 *pre;
+};
+
 void addElements(int number, struct Node *head)
 {
   struct Node *current;
@@ -79,34 +86,65 @@ struct Node *reverse_list(struct Node *head)
 void delete_list(int del_val, struct Node *head)
 {
   struct Node *current;
-  struct Node *prev;
-  struct Node *next;
 
   current = head;
-  // if (current->x = del_val) {}
-  do
+  while (current->x = del_val)
   {
-    if (current->next->x = del_val)
+    struct Node *temp = current->next;
+    free(current);
+    current = temp;
+  }
+
+  while (current->next != NULL)
+  {
+    if (current->next->x == del_val)
     {
       struct Node *temp = current->next->next;
       free(current->next);
       current->next = temp;
+
+      printf("%p\n%p\n", current, current->next);
     }
-  } while (current->next != NULL);
+    current = current->next;
+  }
+}
+int DL_addelements(int number, struct Node1 *dlhead)
+{
+  struct Node1 *current;
+  current = dlhead;
+  printf("current->next = %p\n", current->next);
+  while (current->next != NULL)
+  {
+    current = current->next;
+  }
+
+  for (int i = 0; i < number - 1; i++)
+  {
+    current->next = malloc(sizeof(struct Node1));
+    printf("current->previous = %p,current :%p,current->next:%p\n", current->pre, current, current->next);
+    scanf("%d", &current->next->x);
+    current->next->pre = current;
+    current            = current->next;
+  }
+  return 0;
 }
 
 int main()
 {
-  struct Node *head = malloc(sizeof(struct Node));
-  printf("inside main : head addr =  %p \n", head);
-  struct Node *curr;
-  addElements(5, head);
+  struct Node * head   = malloc(sizeof(struct Node));
+  struct Node1 *dlhead = malloc(sizeof(struct Node1));
+
+  // printf("inside main : head addr =  %p \n", head);
+  struct Node1 *curr;
+  // addElements(5, head);
+  DL_addelements(2, dlhead);
+  DL_addelements(2, dlhead);
 
   // printf("inside main : %p\n", head);
   // printf("outside func head->next %p\n", head->next);
-  curr = reverse_list(head);
-  head = curr;
-  delete_list(4, head);
+  // curr = reverse_list(head);
+  curr = dlhead;
+  // delete_list(4, head);//pass the value to be deleted from the linked list
   while (curr != NULL)
   {
     printf("%p has %d\n", curr, curr->x);
