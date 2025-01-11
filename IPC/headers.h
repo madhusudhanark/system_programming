@@ -1,0 +1,1 @@
+char pincode[7];
