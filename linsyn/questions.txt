@@ -1,0 +1,82 @@
+Basic Level
+What is synchronization in the kernel and why is it important?
+
+What are race conditions? How do you avoid them in kernel code?
+
+What are the common synchronization primitives used in the Linux kernel?
+
+What is a spinlock and when would you use it?
+
+What is the difference between a spinlock and a mutex?
+
+What is the difference between mutex and semaphore in Linux kernel?
+
+What is the difference between a binary semaphore and a counting semaphore?
+
+Can a mutex be used in interrupt context? Why or why not?
+
+What happens if a spinlock is not released?
+
+What is the difference between spin_lock() and spin_lock_irqsave()?
+
+Intermediate Level
+What is preemption and how does it affect synchronization mechanisms?
+
+What is RCU (Read-Copy-Update)? When and why is it used?
+
+How does Linux prevent deadlocks in the kernel?
+
+What are atomic operations? When would you use atomic_t in the Linux kernel?
+
+What is the purpose of memory barriers (smp_mb(), smp_rmb(), smp_wmb()) in SMP systems?
+
+What’s the difference between spinlocks and rwlocks?
+
+What is priority inversion? How does Linux address it?
+
+Why are some synchronization primitives disabled in interrupt context?
+
+Can two threads hold the same spinlock at the same time on different CPUs?
+ Why or why not?
+
+What are completion variables and how are they used?
+
+Advanced Level
+Describe a situation where spinlock leads to performance degradation. 
+How would you fix it?
+
+Explain how seqlocks work and when to use them.
+
+How does RCU defer reclamation of memory safely?
+
+What are lockdep checks and how do they help in debugging locking issues?
+
+Explain lockless programming. What risks does it pose?
+
+What are per-CPU variables and how do they relate to synchronization?
+
+How would you debug a deadlock in a kernel module?
+
+What’s the impact of disabling interrupts while holding a lock?
+
+Explain the difference between spin_lock() and spin_trylock().
+
+Can you describe a real-world kernel bug caused by improper 
+synchronization and how it was resolved?
+
+Practical/Scenario-Based
+You need to protect a critical section accessed by both process 
+and interrupt context. What will you use and why?
+
+You are writing a device driver that needs to wake up a sleeping 
+process when data is available. How would you synchronize access?
+
+You notice frequent kernel panics due to double free errors. How
+ could synchronization help fix it?
+
+Two kernel threads are updating the same global variable. What’s
+ your approach to make it thread-safe?
+
+You’re designing a circular buffer shared between producer
+ (interrupt handler) and consumer (process context).
+  How will you synchronize them efficiently?
