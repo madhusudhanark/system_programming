@@ -14,7 +14,9 @@ Shared_res* create_resource(int value)
   Shared_res *res = malloc(sizeof(Shared_res));
   if(!res) return NULL;
   atomic_init(res->res_sh);
- 
+  res->data = value;
+  printf("Resource created with value = %d\n", value);
+  return res;
 
 }
 
