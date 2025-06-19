@@ -1,46 +1,69 @@
 #include<stdio.h>
 #include<stdlib.h>
+//#include<>
 
-struct circ_LL
-{
-    int x;
-    struct circ_LL *next;
-};
 
-void add_node_end(int x, struct circ_LL *head)
+#ifndef MADHU_H
+#define MADHU_H 2
+#endif
+
+
+typedef struct node
 {
-    struct circ_LL *current;
-    struct circ_LL *new = malloc(sizeof(struct circ_LL));
-    current = head;
-    if(head == NULL)
+    int var;
+    struct node *next;
+}node;
+
+void push(node **head,int data)
+{
+  node* current;
+  node *new;
+  current =*head;
+  new = (node*)malloc(sizeof(node));
+  new->var = data;
+  if(*head == NULL)
+  {
+    *head = new;
+    (*head)->next = NULL;
+  }
+  else{
+    while(current->next != NULL)
     {
-        printf("empty");
-        exit;
+      current = current->next;
+      
     }
-    while(current->next !=  head )
-    {
-        current = current->next;
-    }
-    new->x = x;
-    new->next = head;
     current->next = new;
+    current->next->next = *head;
+  }
     
+}
+
+void* disply(node* head)
+{
+    node* current = head;
+    if(current == NULL)
+    {
+
+        printf("the head is empty\n");
+        return NULL;
+    }
+  while(current->next != head)
+  {
+    printf("the data is %d",current->var);
+    current = current->next;
+  }
 }
 
 
 int main(){
-    struct circ_LL *head = malloc(sizeof (struct circ_LL));
-    struct circ_LL *n1 = malloc(sizeof (struct circ_LL));
-    struct circ_LL *n2 = malloc(sizeof (struct circ_LL));
-    struct circ_LL *n3 = malloc(sizeof (struct circ_LL));
-    head->x = 1;
-    head->next = n1;
-    n1->x = 2;
-    n1->next = n2;
-    n2->x = 3;
-    n2->next = n3;
-    n3->x = 4;
-    n3->next = head;
-    add_node_end(4,head);
+
+    node* head = NULL;
+    for(int i = 10; i< 20 ;i++)
+    {
+
+      push(&head,i);
+
+    }
+    disply(head);
     return 0;
 }
