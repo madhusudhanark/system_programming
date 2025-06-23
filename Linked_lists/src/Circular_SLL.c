@@ -11,57 +11,60 @@
 typedef struct node
 {
     int var;
+    void*(*task_handler)(void*);
     struct node *next;
 }node;
 
-void push(node **head,int data)
+node* head = NULL;
+
+void push(int data)
 {
+  node *new = (node*)malloc(sizeof(node));
   node* current;
-  node *new;
-  current =*head;
-  new = (node*)malloc(sizeof(node));
+  current =head;
   new->var = data;
-  if(*head == NULL)
+  new->next = NULL;
+  if(head == NULL)
   {
-    *head = new;
-    (*head)->next = NULL;
+    head = new;
+    (head)->next = NULL;
   }
   else{
-    while(current->next != NULL)
+    while(current->next != head && current->next != NULL)
     {
       current = current->next;
-      
     }
     current->next = new;
-    current->next->next = *head;
+    new->next = head;
+    head = new;
   }
-    
 }
 
-void* disply(node* head)
+int disply(node *head)
 {
     node* current = head;
     if(current == NULL)
     {
 
         printf("the head is empty\n");
-        return NULL;
+        return 0;
     }
   while(current->next != head)
   {
-    printf("the data is %d",current->var);
+    printf("the data is %d\n",current->var);
     current = current->next;
   }
+  printf("the data is %d\n",current->var);
 }
 
 
 int main(){
 
-    node* head = NULL;
+    //node* head = NULL;
     for(int i = 10; i< 20 ;i++)
     {
 
-      push(&head,i);
+      push(i);
 
     }
     disply(head);
