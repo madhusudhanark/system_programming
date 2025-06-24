@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/*this is circular doubly linked list *//
+/*  this is circular doubly linked list *//
 typedef  struct dll
 {
     int x;
