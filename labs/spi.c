@@ -8,11 +8,11 @@
 // Simulated SPI sensor (slave)
 int spi_sensor_read(uint8_t command) 
 {
-    printf("%d\n",TEMP_BUFF[0]);
-
+    //printf("from spi read : %d\n",TEMP_BUFF[0]);
+ static int i =0;
  switch (command) 
  {
-    case 0x01: return rand();// Example: temperature
+    case 0x01: return 5+i++;// Example: temperature
     case 0x02: return 0x5A;// Example: humidity
     default: return 0x00;// Unknown command
 }

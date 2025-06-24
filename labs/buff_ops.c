@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include "spi.h"
 
 void push_end(int data)
@@ -35,6 +36,5 @@ void display()
      printf("node number %d\n",current->data);
      current = current->next;
    }
-
-
+   printf("node number %d\n",current->data);
 }
