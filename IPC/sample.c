@@ -6,7 +6,7 @@
 
 #define BUFFER_SIZE 5    // Size of the shared buffer
 #define NUM_CONSUMERS 3  // Number of consumer threads
-
+//define main
 int buffer[BUFFER_SIZE];
 int in = 0, out = 0;     // Buffer indices for producer and consumer
 
